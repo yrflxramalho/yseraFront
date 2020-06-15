@@ -1,0 +1,39 @@
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+.header {
+  background-color: gray;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.logos {
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+}
+
+.body {
+  background-color: white;
+  flex: 1;
+}
+
+.cilogo {
+  height: 50%;
+}
+
+.menu {
+  justify-self: right;
+}
+
+.links {
+  color: white;
+  margin-right: 50px;
+}
