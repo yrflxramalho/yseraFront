@@ -1,11 +1,13 @@
 import React from 'react';
 
-// import { Container } from './styles';
+import './styles.css'
 
 function Help() {
   return (
-    <div>
-      help
+    <div className="container-help">
+      <div className="box">
+      Help
+      </div>
     </div>
   );
 }

@@ -1,11 +1,13 @@
 import React from 'react';
 
-// import { Container } from './styles';
+import './styles.css'
 
 function Main() {
   return (
-    <div>
-      main
+    <div className="container-main">
+      <div className="box">
+        Main
+      </div>
     </div>
   );
 }

@@ -4,10 +4,12 @@
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+  background: rgb(4,53,101);
+  background: linear-gradient(90deg, rgba(4,53,101,1) 0%, rgba(3,92,119,1) 52%, rgba(2,57,74,1) 100%);
 }
 .header {
-  background-color: gray;
-  height: 100px;
+  background-color: transparent;
+  height: 80px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -16,12 +18,16 @@
 .logos {
   display: flex;
   height: 100%;
+  flex: 1;
+  margin-right: 30%;
   flex-direction: row;
   align-items: center;
+  justify-content: space-around;
+  /* background-color: tomato; */
 }
 
 .body {
-  background-color: white;
+ 
   flex: 1;
 }
 
@@ -36,4 +42,15 @@
 .links {
   color: white;
   margin-right: 50px;
+  font-size: larger;
+}
+
+.links:hover {
+  color: rgba(255,255,255,0.4);
+}
+
+.links:active {
+
+  position: relative;
+  top: 2px;
 }
