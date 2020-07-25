@@ -20,26 +20,63 @@ function Help() {
 
       <h2><b>Interaction Type definition</b></h2>
 
-      <ul>
-        <li>
-        Hydrogen bond prediction considers a donor/aceptor atom pair with the distance between A and D is less or equal to 3.1 Å. Donors: main chain NH; Arg NE, NH1, NH2; Asn ND2; His NE2, ND1; Ser OG; Tyr OH; Cys SG; Thr OG1; Gln NE2; Lys NZ; Trp NE1; Acceptors: main chain C; Asn OD1; Gln OE1; Met SD; Asp OD1, OD2; Glu OE1, OE2; Ser OG; Thr OG1; His ND1; Tyr OH
-        </li>
-        <li>
-        Van der Waals interactions are predicted by simply measuring the distance between the surface of two atoms. The distance threshold is 0.5 Å. Only Carbon-Carbon (C-C) or Carbon-Sulfur (C-S) atom pairs are considered for a valid VDW interaction and their distance is calculated ******.
-        </li>
-        <li>
-        Disulfide bridges (SBOND) since are covalent bonds, are found with a very constant distance. RING-2.0 identifies disulfide bridges when the distance between SG atoms of cysteine pairs is lower or equal to 2.5 (or 3.0 relaxed) Å.
-        </li>
-        <li>
-        Salt bridges (IONIC) occur between residues with opposite charges. A ionic interaction is possible if the distance between the mass centers of the charged groups are less or equal to 4.0 (or 5.0 relaxed) Å.
-        </li>
-        <li>
-        π-π stacking (PIPISTACK) interactions are evaluated between aromatic residues (His, Tyr, Trp, Phe). After choosing one ring as reference plane, we consider the right-angled triangle with one cathetus, p, lying in the defined plane and the hypotenuse corresponding to the distance vector connecting the barycenter of the two rings. The p side, the other cathetus, n, and the angle ϑ between the two ring planes define 4 different types of orientation. Parallel (P), Lateral (L), Normal (N), Tilted Edge to Face (T-EF), Tilted Face to Edge (T-FE). An interaction is returned only of the distance of the two ring barycenters is 6.5 (or 7.0 relaxed) Å.  
-        </li>
-        <li>
-        π-cation (PICATION) interactions are possible between positively charged amino acids (Arg, Lys) and an aromatic side chain. Histidine is not considered because it can act both as cation and as a π-system, depending on its protonation state. The conditions necessary to define this interaction are two: i) the distance between the mass center of the charged group and any atom of the π-system must be lower than 5.0 (or 7.0 relaxed) Å and ii) the angle between the distance vector and the ring plane has to guarantee that the mass center of the cation lies above (or below) the ring area. By this, if the approximated average ring radius is 1.8 Å, than the angle is calculated with the inverse sine of the distance vector divided by the ring radius. Moreover, RING-2.0 calculates Arginine orientation according to the dihedral angle defined between the plane of the aromatic ring and the cationic guanidine group. Only parallel (P), oblique (L), orthogonal (N) orientations are allowed.
-        </li>
-      </ul>
+      <table>
+        <thead style={{backgroundColor:'#DDD'}}>
+          <tr>
+            <th>Interaction Type</th>
+            <th>Residues</th>
+            <th>Distance</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th>Saline Bridge</th>
+            <th>GLU, ASP, ARG, LYS</th>
+            <th>Up to 4 Å</th>
+          </tr>
+          <tr>
+            <th>Hydrogen Bonding</th>
+            <th>ALL</th>
+            <th>2,7 a 3,1 Å</th>
+          </tr>
+          <tr>
+            <th>π-Stacking</th>
+            <th>TYR, TRP, PHE</th>
+            <th>
+              Up to 7,2 Å(T-shaped: 50 ° to 70 ° angle; Intermediate conformation: 30 ° angles; 50 °; Parallel conformations: angles less than 30 °)
+            </th>
+          </tr>
+          <tr>
+            <th>Cation-Aryl Interactions</th>
+            <th>HIS, TYR, TRP, PHE, ARG, LYS</th>
+            <th>
+              Up to 6 Å
+            </th>
+          </tr>
+          <tr>
+            <th>Anion-Aryl Interactions</th>
+            <th>HIS, TYR, TRP, PHE, GLU, ASP</th>
+            <th>
+              Up to 3,5 Å
+            </th>
+          </tr>
+          <tr>
+            <th>Van Der Waals Interactions</th>
+            <th>TODOS</th>
+            <th>
+              Up to 3,2 Å
+            </th>
+          </tr>
+          <tr>
+            <th>Disulfide bonds</th>
+            <th>CYS</th>
+            <th>
+              Up to 2,2 Å
+            </th>
+          </tr>
+        </tbody>
+      </table>
 
       <h2><b>Program Output</b></h2>
       <p style={{fontSize: '12pt'}}>

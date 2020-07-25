@@ -19,7 +19,7 @@ const URL = 'http://localhost:5000/'
 
 function Calculate() {
   
-  const [mode, setMode] = useState('result');
+  const [mode, setMode] = useState('upload');
   const [hb, setHb] = useState(3.1);
   const [sb, setSb] = useState(4.0);
   const [db, setDb] = useState(2.2);
@@ -74,8 +74,8 @@ function Calculate() {
       })
       .then(result => {
 
-        setTimeout(() => { setMode('result')}, 3000);
-        
+        setMode('result');
+        console.log(result.data)
         setData(result.data)
       })
 
@@ -111,56 +111,61 @@ function Calculate() {
         <div className="box">
           <Card title="Resultado" style={{ width: '95%',height: '60%', marginTop: 10, marginBottom: 40, display: 'flex', flexDirection:'column' }}>
             <div style={{height: '100%', width: '100%', display:'flex', flexDirection:'row'}}>
-            <div style={{width:'40%', marginLeft: '5%', height: '100%'}}>
+            <div style={{width:'30%', marginLeft: '3%', height: '100%'}}>
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}> 
-                  <span>Hydrogen Bonds:</span><Tag color="#20B2AA">{125}</Tag> 
+                  <span>Hydrogen Bonds:</span><Tag color="#20B2AA">{data.hb}</Tag> 
                 </div>
                 <Divider />
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <span>Saline Bridges:</span><Tag color="#20B2AA">{125}</Tag>
+                  <span>Saline Bridges:</span><Tag color="#20B2AA">{data.sb}</Tag>
                 </div>
                 <Divider />
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <span>Disulfite bridge:</span><Tag color="#20B2AA">{125}</Tag>
+                  <span>Disulfite bridge:</span><Tag color="#20B2AA">{data.db}</Tag>
                 </div>
                 <Divider />
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <span>ππ Stacking:</span><Tag color="#008080">{125}</Tag>
+                  <span>ππ Stacking:</span><Tag color="#008080">{data.spi}</Tag>
+                </div>
+                
+              </div>
+
+              <div style={{width:'30%', marginLeft: '3%', height: '100%'}}>
+                
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <span>Van Der Waals:</span><Tag color="#4682B4">{data.vdw}</Tag>
                 </div>
                 <Divider />
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <span>tshaped:</span><Tag color="#20B2AA">{125}</Tag>
+                  <span>Anion anel aromatic:</span><Tag color="#66CDAA">{data.lpi}</Tag>
                 </div>
                 <Divider />
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <span>Inter:</span><Tag color="#008B8B">{125}</Tag>
+                  <span>Anel aromatic:</span><Tag color="#5F9EA0">{data.an}</Tag>
+                </div>
+                <Divider />
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <span>Sulfur anel aromatic:</span><Tag color="#4682B4">{data.ctn}</Tag> 
                 </div>
               </div>
 
-              <div style={{width:'40%', marginLeft: '5%', height: '100%'}}>
+              <div style={{width:'30%', marginLeft: '3%', height: '100%'}}>
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <span>Paralel:</span><Tag color="#008080">{125}</Tag>
+                  <span>Paralel:</span><Tag color="#008080">{data.paralel}</Tag>
                 </div>
                 <Divider />
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <span>Van Der Waals:</span><Tag color="#4682B4">{125}</Tag>
+                  <span>Inter:</span><Tag color="#008B8B">{data.inter}</Tag>
                 </div>
                 <Divider />
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <span>Anion anel aromatic:</span><Tag color="#66CDAA">{125}</Tag>
+                  <span>Tshaped:</span><Tag color="#20B2AA">{data.tshaped}</Tag>
                 </div>
-                <Divider />
-                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <span>anel aromatic:</span><Tag color="#5F9EA0">{125}</Tag>
-                </div>
-                <Divider />
-                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <span>sulfur anel aromatic:</span><Tag color="#4682B4">{125}</Tag>
-                </div>
+
+
               </div>
 
 
-          
 
             </div>
           </Card>
