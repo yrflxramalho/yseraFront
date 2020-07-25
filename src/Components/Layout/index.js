@@ -19,10 +19,8 @@ function Layout(props) {
           </div>
          
           <nav className="menu">
+           
             <Link to="/" className="links">
-              <span>Home</span>
-            </Link>
-            <Link to="/calculate" className="links">
               <span>Calcular</span>
             </Link>
             <Link to="/help" className="links">

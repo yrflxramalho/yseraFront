@@ -12,8 +12,8 @@ function Routes() {
 		<BrowserRouter>
 			<Switch>
 				<Layout>
-					<Route exact path='/' component={ Main } />
-					<Route exact path='/calculate' component={ Calculate } />
+					<Route exact path='/' component={ Calculate } />
+			
 					<Route exact path='/help' component={ Help } />
 				</Layout>
 			</Switch>

@@ -19,7 +19,7 @@ const URL = 'http://localhost:5000/'
 
 function Calculate() {
   
-  const [mode, setMode] = useState('result');
+  const [mode, setMode] = useState('upload');
   const [hb, setHb] = useState(3.1);
   const [sb, setSb] = useState(4.0);
   const [db, setDb] = useState(2.2);
@@ -32,12 +32,26 @@ function Calculate() {
   const [aactnEnd, setAactnEnd] = useState(4.0);
   const [file, setFile] = useState('')
 
-  const [data, setData] = useState(["aa"])
+  const [data, setData] = useState({})
 
   const uploadFile = () => {
     setMode('process');
-    
+  
+    const {name} = file;
+    const nameSplit = name.split('.');
+
+    if(nameSplit.length !== 2){
+      setMode('error');
+      return;
+    }
+    if(nameSplit[1] !== 'pdb') {
+      setMode('error');
+      return;
+    }
+
+
     try {
+     
       const api = Axios.create( { baseURL : URL} );
       const formData = new FormData();
 
@@ -59,9 +73,9 @@ function Calculate() {
         }
       })
       .then(result => {
-        
+
         setTimeout(() => { setMode('result')}, 3000);
-       
+        
         setData(result.data)
       })
 
@@ -95,27 +109,70 @@ function Calculate() {
     return (
       <div className="container">
         <div className="box">
-          <Card title="Resultado" style={{ width: '60%', marginBottom: 40, }}>
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-              <span>Hb:</span><Tag color="#f50">{125}</Tag>
+          <Card title="Resultado" style={{ width: '95%',height: '60%', marginTop: 10, marginBottom: 40, display: 'flex', flexDirection:'column' }}>
+            <div style={{height: '100%', width: '100%', display:'flex', flexDirection:'row'}}>
+            <div style={{width:'40%', marginLeft: '5%', height: '100%'}}>
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}> 
+                  <span>Hydrogen Bonds:</span><Tag color="#20B2AA">{125}</Tag> 
+                </div>
+                <Divider />
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <span>Saline Bridges:</span><Tag color="#20B2AA">{125}</Tag>
+                </div>
+                <Divider />
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <span>Disulfite bridge:</span><Tag color="#20B2AA">{125}</Tag>
+                </div>
+                <Divider />
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <span>ππ Stacking:</span><Tag color="#008080">{125}</Tag>
+                </div>
+                <Divider />
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <span>tshaped:</span><Tag color="#20B2AA">{125}</Tag>
+                </div>
+                <Divider />
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <span>Inter:</span><Tag color="#008B8B">{125}</Tag>
+                </div>
+              </div>
+
+              <div style={{width:'40%', marginLeft: '5%', height: '100%'}}>
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <span>Paralel:</span><Tag color="#008080">{125}</Tag>
+                </div>
+                <Divider />
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <span>Van Der Waals:</span><Tag color="#4682B4">{125}</Tag>
+                </div>
+                <Divider />
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <span>Anion anel aromático:</span><Tag color="#66CDAA">{125}</Tag>
+                </div>
+                <Divider />
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <span>anel aromatico:</span><Tag color="#5F9EA0">{125}</Tag>
+                </div>
+                <Divider />
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <span>sulfur anel aromático:</span><Tag color="#4682B4">{125}</Tag>
+                </div>
+              </div>
+
+
+          
+
             </div>
-            <Divider />
-            
-
-
-
           </Card>
-        
-
-
-          <div className="buttonsResult">
-            <Button key="console" onClick={()=>{setMode('upload')}}>
-              Calcular novamente
-            </Button>
-            <Button key="console" type="primary" onClick={()=>{downloadData()}}>
-              Baixar Relatorio Completo
-            </Button>
-          </div>
+            <div className="buttonsResult">
+              <Button key="console" onClick={()=>{setMode('upload')}}>
+                Calcular novamente
+              </Button>
+              <Button key="console" type="primary" onClick={()=>{downloadData()}}>
+                Baixar Relatorio Completo
+              </Button>
+            </div>
+         
         </div>
       </div>
     )
@@ -125,7 +182,7 @@ function Calculate() {
     const loadingIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
     return (
       <div className="container">
-        <div className="box">
+        <div className="box" style={{ justifyContent: 'center'}}>
           <Spin indicator={loadingIcon} style={{color: '#EB4B98'}} />
           <span style={{marginTop:40, fontSize: 24}}>Aguarde...</span>
         </div>
@@ -136,7 +193,7 @@ function Calculate() {
   if(mode === 'error') {
     return (
       <div className="container">
-        <div className="box">
+        <div className="box" style={{ justifyContent: 'center'}}>
           <Result
             status="error"
             title="Erro - Arquivo invalido"
@@ -172,50 +229,50 @@ function Calculate() {
         </div>
         <div className="boxInputs">
           <div>
-            <span>Hb:</span>
-            <InputNumber min={0} value={hb} onChange={(e)=>{setHb(e)}}   />
+            <span>Hydrogen bond:</span>
+            <InputNumber min={0} max={10} value={hb} onChange={(e)=>{setHb(e)}}   />
           </div>
           
           <div>
-            <span>Sb:</span>
-            <InputNumber min={0}  value={sb} onChange={(e)=>{setSb(e)}}   />
+            <span>Saline bridge:</span>
+            <InputNumber min={0} max={10}  value={sb} onChange={(e)=>{setSb(e)}}   />
           </div>
           
           <div>
-            <span>Db:</span>
-            <InputNumber min={0}  value={db} onChange={(e)=>{setDb(e)}}    />
+            <span>Disulfide bridge:</span>
+            <InputNumber min={0} max={10}  value={db} onChange={(e)=>{setDb(e)}}    />
           </div>
           
           <div>
-            <span>Vdw:</span>
-            <InputNumber min={0}  value={vdw} onChange={(e)=>{setVdw(e)}}  />
+            <span>Van der Waals:</span>
+            <InputNumber min={0} max={10}  value={vdw} onChange={(e)=>{setVdw(e)}}  />
           </div>
           
           <div>
-            <span>PS:</span>
-            <InputNumber min={0}  value={ps} onChange={(e)=>{setPs(e)}}   />
+            <span>π-stacking:</span>
+            <InputNumber min={0} max={10}  value={ps} onChange={(e)=>{setPs(e)}}   />
           </div>
           
           <div>
-            <span>aaspi:</span>
-            <InputNumber min={0}  value={aaspi} onChange={(e)=>{setAaspi(e)}}  />
+            <span>Aryl sulfides:</span>
+            <InputNumber min={0} max={10}  value={aaspi} onChange={(e)=>{setAaspi(e)}}  />
           </div>
 
           <div>
-            <span>Aaan:</span>
+            <span>Anion Aryl:</span>
             <div style={{display: 'flex', flexDirection: 'row',alignItems: 'center'}}>
-              <InputNumber min={0} value={aaanBeg} onChange={(e)=>{setAaanBeg(e)}}  />
+              <InputNumber min={0} max={10} value={aaanBeg} onChange={(e)=>{setAaanBeg(e)}}  />
               <span>Até</span>
-              <InputNumber min={0} value={aaanEnd} onChange={(e)=>{setAaanEnd(e)}}  />
+              <InputNumber min={0} max={10} value={aaanEnd} onChange={(e)=>{setAaanEnd(e)}}  />
             </div>
           </div>
           
           <div>
-            <span>Aact:</span>
+            <span>Cation aryl:</span>
             <div style={{display: 'flex', flexDirection: 'row',alignItems: 'center'}}>
-              <InputNumber min={0} value={aactnBeg} onChange={(e)=>{setAactnBeg(e)}}  />
+              <InputNumber min={0} max={10} value={aactnBeg} onChange={(e)=>{setAactnBeg(e)}}  />
               <span>Até</span>
-              <InputNumber min={0} value={aactnEnd} onChange={(e)=>{setAactnEnd(e)}}  />
+              <InputNumber min={0} max={10} value={aactnEnd} onChange={(e)=>{setAactnEnd(e)}}  />
             </div>
           </div>
         </div>
