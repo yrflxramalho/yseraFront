@@ -19,7 +19,7 @@ const URL = 'http://localhost:5000/'
 
 function Calculate() {
   
-  const [mode, setMode] = useState('upload');
+  const [mode, setMode] = useState('result');
   const [hb, setHb] = useState(3.1);
   const [sb, setSb] = useState(4.0);
   const [db, setDb] = useState(2.2);
@@ -147,15 +147,15 @@ function Calculate() {
                 </div>
                 <Divider />
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <span>Anion anel aromático:</span><Tag color="#66CDAA">{125}</Tag>
+                  <span>Anion anel aromatic:</span><Tag color="#66CDAA">{125}</Tag>
                 </div>
                 <Divider />
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <span>anel aromatico:</span><Tag color="#5F9EA0">{125}</Tag>
+                  <span>anel aromatic:</span><Tag color="#5F9EA0">{125}</Tag>
                 </div>
                 <Divider />
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <span>sulfur anel aromático:</span><Tag color="#4682B4">{125}</Tag>
+                  <span>sulfur anel aromatic:</span><Tag color="#4682B4">{125}</Tag>
                 </div>
               </div>
 
@@ -166,10 +166,10 @@ function Calculate() {
           </Card>
             <div className="buttonsResult">
               <Button key="console" onClick={()=>{setMode('upload')}}>
-                Calcular novamente
+                Calculate again
               </Button>
               <Button key="console" type="primary" onClick={()=>{downloadData()}}>
-                Baixar Relatorio Completo
+                Download complete result
               </Button>
             </div>
          
@@ -196,11 +196,11 @@ function Calculate() {
         <div className="box" style={{ justifyContent: 'center'}}>
           <Result
             status="error"
-            title="Erro - Arquivo invalido"
-            subTitle="Por favor, envie um arquivo no formato pdb"
+            title="Error - Invalid File"
+            subTitle="Plese, select a pdb file"
             extra={[
               <Button key="console" onClick={()=>{setMode('upload')}}>
-                Tentar novamente
+                Try again
               </Button>,
             ]}
           />  
@@ -217,11 +217,11 @@ function Calculate() {
           {
             isDragActive ?
               (
-                <p>Solte aqui...</p> 
+                <p>Drag and drop...</p> 
               ) : (
                 <>
                   <img src={fileIcon} className="fileIcon"/>
-                  <p>Solte um arquivo .pdb aqui, ou clique para selecionar</p>
+                  <p>Drag and drop a pdb file or click here</p>
                   
                 </>
               )
@@ -278,7 +278,7 @@ function Calculate() {
         </div>
           
         <Button key="console" type="primary" onClick={()=>{uploadFile()}}>
-          Carregar
+          Submit
         </Button>
       
       </div>

@@ -57,6 +57,11 @@ function Help() {
           E-email: annieebeltrao@gmail.com
         </li>
         <li>
+        Flávio Eduardo Souto Maior Serrano, undergraduate Student of Computer Science at UFPB
+          <br/>
+          E-mail: flaviosms@gmail.com
+        </li>
+        <li>
           Alielson Ferreira Pequeno, undergraduate Student of Computer Science at UFPB
           <br/>
           E-mail: alielson_pequeno@hotmail.com

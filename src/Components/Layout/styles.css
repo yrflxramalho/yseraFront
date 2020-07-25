@@ -2,7 +2,7 @@
 .layout {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   background: rgb(4,53,101);
   background: linear-gradient(90deg, rgba(4,53,101,1) 0%, rgba(3,92,119,1) 52%, rgba(2,57,74,1) 100%);
